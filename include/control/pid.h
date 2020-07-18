@@ -52,10 +52,10 @@ class Pid {
     fb_ = kp_ * fb_prop_err_ + ki_ * fb_int_err_state_ + kd_ * fb_deriv_err_state_;
     y_ = ff_ - fb_;
     /* Saturation */
-    if ((y_ > max_) && (ref - feedback > 0))      {anti_windup_ = 1; y_ = max_;}
-    else if ((y_ > max_) && (ref - feedback < 0)) {anti_windup_ = 0; y_ = max_;}
-    else if ((y_ < min_) && (ref - feedback > 0)) {anti_windup_ = 0; y_ = min_;}
-    else if ((y_ < min_) && (ref - feedback < 0)) {anti_windup_ = 1; y_ = min_;}
+    if ((y_ >= max_) && (ref - feedback > 0))       {anti_windup_ = 1; y_ = max_;}
+    else if ((y_ >= max_) && (ref - feedback <= 0)) {anti_windup_ = 0; y_ = max_;}
+    else if ((y_ <= min_) && (ref - feedback >= 0)) {anti_windup_ = 0; y_ = min_;}
+    else if ((y_ <= min_) && (ref - feedback < 0))  {anti_windup_ = 1; y_ = min_;}
     else {anti_windup_ = 1;}
     /* Return the command */
     return y_;
