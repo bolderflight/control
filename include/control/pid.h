@@ -60,6 +60,10 @@ class Pid {
     /* Return the command */
     return y_;
   }
+  void Reset() {
+    dstate_ = d0_;
+    istate_ = i0_;
+  }
 
  private:
   /* Control law constants */
