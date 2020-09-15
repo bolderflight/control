@@ -15,6 +15,7 @@ class Pid {
  public:
   Pid(T kp, T min, T max) : kp_(kp), min_(min), max_(max) {}
   Pid(T kp, T ki, T dt, T min, T max) : kp_(kp), ki_(ki), dt_(dt), min_(min), max_(max) {}
+  Pid(T kp, T ki, T dt, T min, T max, T kt) : kp_(kp), ki_(ki), dt_(dt), min_(min), max_(max), kt_(kt) {}
   Pid(T kp, T ki, T kd, T N, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), n_(N), dt_(dt), min_(min), max_(max) {}
   Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max) {}
   Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max), kt_(kt) {}
