@@ -13,16 +13,18 @@ namespace controls {
 template<typename T>
 class Pid {
  public:
-  
   Pid(T kp, T min, T max) : kp_(kp), min_(min), max_(max) {}
   Pid(T kp, T ki, T dt, T min, T max) : kp_(kp), ki_(ki), dt_(dt), min_(min), max_(max) {}
-  Pid(T kp, T ki, T kd, T tf, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), tf_(tf), dt_(dt), min_(min), max_(max) {}
-  Pid(T kp, T ki, T kd, T tf, T b, T c, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), tf_(tf), b_(b), b_(c), dt_(dt), min_(min), max_(max) {}
+  Pid(T kp, T ki, T kd, T N, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), n_(N), dt_(dt), min_(min), max_(max) {}
+  Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max) {}
+  Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max), kt_(kt) {}
+  Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt, T d0) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max), kt_(kt), dstate_(d0), d0_(d0) {}
+  Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt, T d0, T i0) : kp_(kp), ki_(ki), kd_(kd), n_(N), b_(b), b_(c), dt_(dt), min_(min), max_(max), kt_(kt), dstate_(d0), d0_(d0), istate_(i0), i0_(i0) {}
   T Run(T ref, T feedback) {
     /* Proportional error */
     yp_ = kp_ * (b_ * ref - feedback);
     /* Derivative error */
-    yd_ = (kd_ * (c_ * ref - feedback) - dstate_) * tf_;
+    yd_ = (kd_ * (c_ * ref - feedback) - dstate_) * n_;
     /* Compute output */
     y_ = yp_ + istate_ + yd_;
     /* Saturation */
@@ -42,7 +44,7 @@ class Pid {
     /* Proportional error */
     yp_ = kp_ * (b_ * ref - feedback);
     /* Derivative error */
-    yd_ = (kd_ * (c_ * ref - feedback) - dstate_) * tf_;
+    yd_ = (kd_ * (c_ * ref - feedback) - dstate_) * n_;
     /* Compute output */
     y_ = yp_ + istate_ + yd_;
     /* Saturation */
@@ -58,10 +60,10 @@ class Pid {
     /* Return the command */
     return y_;
   }
-  
+
  private:
   /* Control law constants */
-  const T kp_ = 0, ki_ = 0, kd_ = 0, kt_ = 1, tf_ = 0, b_ = 1, c_ = 1, dt_ = 0, min_, max_;
+  const T kp_ = 0, ki_ = 0, kd_ = 0, kt_ = 1, n_ = 0, b_ = 1, c_ = 1, dt_ = 0, d0_ = 0, i0_ = 0, min_, max_;
   /* PID responses */
   T yp_ = 0, yd_ = 0;
   /* Derivative state */
