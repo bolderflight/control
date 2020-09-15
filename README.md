@@ -53,9 +53,17 @@ Implements a PID controller. The output is saturated at upper and lower limits a
 
 **Pid(T kp, T ki, T dt, T min, T max)** Creates a PID controller with proportional, kp, and integrator, ki, gains. In addition to the gains and limits, the sampling time, dt, must be specified.
 
-**Pid(T kp, T ki, T kd, T tf, T dt, T min, T max)** Creates a PID controller with proportional, kp, integrator, ki, and derivative, kd, gains. In addition to the gains, limits, and sampling time, the time constant of the first order derivative filter, tf, must be specified.
+**Pid(T kp, T ki, T dt, T min, T max, T kt)** Creates a PID controller with proportional, kp, and integrator, ki, gains. In addition to the gains and limits, the sampling time, dt, must be specified. The tracking gain, kt, can also be specified.
 
-**Pid(T kp, T ki, T kd, T tf, T b, T c, T dt, T min, T max)** Creates a 2-DOF PID controller with setpoint weighting on the proportional, b, and derivative, c, terms.
+**Pid(T kp, T ki, T kd, T N, T dt, T min, T max)** Creates a PID controller with proportional, kp, integrator, ki, and derivative, kd, gains. In addition to the gains, limits, and sampling time, the filter coefficient of the first order derivative filter, N, must be specified.
+
+**Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max)** Creates a 2-DOF PID controller with setpoint weighting on the proportional, b, and derivative, c, terms.
+
+**Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt)** Creates a 2-DOF PID controller with setpoint weighting on the proportional, b, and derivative, c, terms. The tracking gain, kt, can also be specified.
+
+**Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt, T d0)** Creates a 2-DOF PID controller with setpoint weighting on the proportional, b, and derivative, c, terms. The tracking gain, kt, and initial condition of the derivative state, d0, can also be specified.
+
+**Pid(T kp, T ki, T kd, T N, T b, T c, T dt, T min, T max, T kt, T d0, T i0)** Creates a 2-DOF PID controller with setpoint weighting on the proportional, b, and derivative, c, terms. The tracking gain, kt, initial condition of the derivative state, d0, and initial condition of the integrator state, i0, can also be specified.
 
 ```C++
 /* PI controller with a 50 Hz sampling frequency and limits of +/-1 */ 
@@ -68,3 +76,12 @@ controls::Pid<float> pid(2.0f, 1.0f, 0.02f, -1.0f, 1.0f);
 /* Reference command of 3 and a feedback value of 1 */
 std::cout << pid.Run(3, 1) << std::endl;
 ```
+
+**T Run(T ref, T feedback, T tracking)** Computes the controller output given a reference command, feedback value, and tracking value. The tracking value can be used to create transient free transitions between control laws and provide anti-windup protection for cascaded PID controllers.
+
+```C++
+/* Reference command of 3, feedback value of 1, and tracking value of 0.5 */
+std::cout << pid.Run(3, 1, 0.5) << std::endl;
+```
+
+**void Reset()** Resets the derivative and integrator states to their initial values
