@@ -16,8 +16,11 @@ class Gain {
   Gain(T k, T min, T max) : k_(k), min_(min), max_(max) {}
   T Run(T input) {
     y_ = k_ * input;
-    if (y_ > max_) {y_ = max_;}
-    else if (y_ < min_) {y_ = min_;}
+    if (y_ > max_) {
+      y_ = max_;
+    } else if (y_ < min_) {
+      y_ = min_;
+    }
     return y_;
   }
 
