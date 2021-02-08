@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.3
+- Updated CONTRIBUTING
+- Removed line length exceptions from CI/CD
+- Updated gain.h and pid.h to conform to linting
+
 ## v1.1.2
 - Updated CONTRIBUTING
 

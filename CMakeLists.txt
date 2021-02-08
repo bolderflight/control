@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Control
-  VERSION 1.1.2
+  VERSION 1.1.3
   DESCRIPTION "Control laws."
   LANGUAGES CXX
 )

@@ -6,6 +6,6 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint.py --verbose=0 --filter=-whitespace,-line_length,-readability,-braces, include/control/gain.h
-    - cpplint.py --verbose=0 --filter=-whitespace,-line_length,-readability,-braces, include/control/pid.h
+    - cpplint.py --verbose=0 include/control/gain.h
+    - cpplint.py --verbose=0 include/control/pid.h
   
