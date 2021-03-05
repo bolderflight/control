@@ -5,7 +5,8 @@ Lint:
   stage: lint
   tags:
     - bfs
-  script: 
-    - cpplint.py --verbose=0 include/control/gain.h
-    - cpplint.py --verbose=0 include/control/pid.h
+  script:
+    - cpplint --verbose=0 include/control/control.h
+    - cpplint --verbose=0 include/control/gain.h
+    - cpplint --verbose=0 include/control/pid.h
   

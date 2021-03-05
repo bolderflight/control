@@ -21,7 +21,7 @@ make
 This will build the library and an example executable called *control_example*. The example executable source files are located at *examples/control_example.cc*.
 
 ## Namespace
-This library is within the namespace *controls*
+This library is within the namespace *bfs*
 
 ## Classes
 
@@ -34,7 +34,7 @@ The *Gain* class implements an output-limited gain, where an input is multiplied
 
 ```C++
 /* A gain of 2 with limits at -1 and 10 */
-controls::Gain<float> g(2, -1, 10);
+bfs::Gain<float> g(2, -1, 10);
 ```
 
 **T Run(T input)** Computes the output of the block given the input value. This would be the input multiplied by the constant gain, unless the output would exceed a limit, in which case the output is saturated at the limit value.
@@ -66,7 +66,7 @@ Implements a PID controller. The output is saturated at upper and lower limits a
 
 ```C++
 /* PI controller with a 50 Hz sampling frequency and limits of +/-1 */ 
-controls::Pid<float> pid(2.0f, 1.0f, 0.02f, -1.0f, 1.0f);
+bfs::Pid<float> pid(2.0f, 1.0f, 0.02f, -1.0f, 1.0f);
 ```
 
 **T Run(T ref, T feedback)** Computes the controller output given a reference command and a feedback value.

@@ -1,5 +1,8 @@
 # Changelog
 
+# v2.0.0
+- Updated namespace to *bfs*
+
 ## v1.1.3
 - Updated CONTRIBUTING
 - Removed line length exceptions from CI/CD
