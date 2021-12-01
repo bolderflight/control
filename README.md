@@ -2,7 +2,7 @@
 
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
-# control
+# Control
 This is a library of control law algorithms. This library is compatible with Arduino ARM and with CMake build systems. It would also be easy to include with other projects, since it is a header only library.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
@@ -35,15 +35,13 @@ make
 
 This will build the library and an example executable called *control_example*. The example executable source files are located at *examples/cmake/control_example.cc*.
 
-## Namespace
+# Namespace
 This library is within the namespace *bfs*
 
-## Classes
-
-### Gain
+# Gain
 The *Gain* class implements an output-limited gain, where an input is multiplied by a constant and the output is saturated at upper and lower limits.
 
-#### Methods
+## Methods
 
 **Gain(T k, T min, T max)** Creates a *Gain* object. The gain, minimum, and maximum limit must be specified in the constructor. This class is templated by type, which also must be specified as a template parameter.
 
@@ -58,10 +56,10 @@ bfs::Gain<float> g(2, -1, 10);
 std::cout << g.Run(3) << std::endl;
 ```
 
-### PID
+# PID
 Implements a PID controller. The output is saturated at upper and lower limits and integrators are clamped to avoid windup.
 
-#### Methods
+## Methods
 
 **Pid(T kp, T min, T max)** Creates a PID controller with proportional gain, kp, and min / max output limits. This class is templated by type, which also must be specified as a template parameter.
 
