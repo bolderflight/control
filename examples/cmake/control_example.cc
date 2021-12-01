@@ -23,30 +23,17 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef INCLUDE_CONTROL_GAIN_H_
-#define INCLUDE_CONTROL_GAIN_H_
+#include "control.h"
+#include <iostream>
 
-namespace bfs {
+int main() {
+  /* Proportional controller with a gain of 2 and limits of +/- 1 */
+  bfs::Pid<float> pid(2.0f, -1.0f, 1.0f);
+  std::cout << pid.Run(3, 1) << std::endl; // 1, saturated
 
-template<typename T>
-class Gain {
- public:
-  Gain(T k, T min, T max) : k_(k), min_(min), max_(max) {}
-  T Run(T input) {
-    y_ = k_ * input;
-    if (y_ > max_) {
-      y_ = max_;
-    } else if (y_ < min_) {
-      y_ = min_;
-    }
-    return y_;
-  }
-
- private:
-  const T k_, min_, max_;
-  T y_;
-};
-
-}  // namespace bfs
-
-#endif  // INCLUDE_CONTROL_GAIN_H_
+  /* Gain of 2 with limits at -1 and 10 */
+  bfs::Gain<float> g(2, -1, 10);
+  std::cout << g.Run(3) << std::endl; // 6
+  std::cout << g.Run(6) << std::endl; // 10, saturated
+  std::cout << g.Run(-1) << std::endl; // -1, saturated
+}

@@ -23,17 +23,18 @@
 * IN THE SOFTWARE.
 */
 
-#include "control/control.h"
-#include <iostream>
+#include "control.h"
 
-int main() {
+void setup() {
   /* Proportional controller with a gain of 2 and limits of +/- 1 */
   bfs::Pid<float> pid(2.0f, -1.0f, 1.0f);
-  std::cout << pid.Run(3, 1) << std::endl; // 1, saturated
+  Serial.println(pid.Run(3, 1)); // 1, saturated
 
   /* Gain of 2 with limits at -1 and 10 */
   bfs::Gain<float> g(2, -1, 10);
-  std::cout << g.Run(3) << std::endl; // 6
-  std::cout << g.Run(6) << std::endl; // 10, saturated
-  std::cout << g.Run(-1) << std::endl; // -1, saturated
+  Serial.println(g.Run(3)); // 6
+  Serial.println(g.Run(6)); // 10, saturated
+  Serial.println(g.Run(-1)); // -1, saturated
 }
+
+void loop() {}

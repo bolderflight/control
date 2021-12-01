@@ -23,8 +23,12 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef INCLUDE_CONTROL_PID_H_
-#define INCLUDE_CONTROL_PID_H_
+#ifndef SRC_PID_H_
+#define SRC_PID_H_
+
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
 
 namespace bfs {
 
@@ -135,4 +139,4 @@ class Pid {
 
 }  // namespace bfs
 
-#endif  // INCLUDE_CONTROL_PID_H_
+#endif  // SRC_PID_H_
