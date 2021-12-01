@@ -23,10 +23,34 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef INCLUDE_CONTROL_CONTROL_H_
-#define INCLUDE_CONTROL_CONTROL_H_
+#ifndef SRC_GAIN_H_
+#define SRC_GAIN_H_
 
-#include "control/gain.h"
-#include "control/pid.h"
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
 
-#endif  // INCLUDE_CONTROL_CONTROL_H_
+namespace bfs {
+
+template<typename T>
+class Gain {
+ public:
+  Gain(T k, T min, T max) : k_(k), min_(min), max_(max) {}
+  T Run(T input) {
+    y_ = k_ * input;
+    if (y_ > max_) {
+      y_ = max_;
+    } else if (y_ < min_) {
+      y_ = min_;
+    }
+    return y_;
+  }
+
+ private:
+  const T k_, min_, max_;
+  T y_;
+};
+
+}  // namespace bfs
+
+#endif  // SRC_GAIN_H_

@@ -6,7 +6,7 @@ Lint:
   tags:
     - bfs
   script:
-    - cpplint --verbose=0 include/control/control.h
-    - cpplint --verbose=0 include/control/gain.h
-    - cpplint --verbose=0 include/control/pid.h
+    - cpplint --verbose=0 src/control.h
+    - cpplint --verbose=0 src/gain.h
+    - cpplint --verbose=0 src/pid.h
   
