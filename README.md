@@ -82,14 +82,14 @@ Implements a PID controller. The output is saturated at upper and lower limits a
 bfs::Pid pid(2.0f, 1.0f, 0.02f, -1.0f, 1.0f);
 ```
 
-**T Run(T ref, T feedback)** Computes the controller output given a reference command and a feedback value.
+**float Run(const float ref, const float feedback)** Computes the controller output given a reference command and a feedback value.
 
 ```C++
 /* Reference command of 3 and a feedback value of 1 */
 std::cout << pid.Run(3, 1) << std::endl;
 ```
 
-**T Run(T ref, T feedback, T tracking)** Computes the controller output given a reference command, feedback value, and tracking value. The tracking value can be used to create transient free transitions between control laws and provide anti-windup protection for cascaded PID controllers.
+**float Run(const float ref, const float feedback, const float tracking)** Computes the controller output given a reference command, feedback value, and tracking value. The tracking value can be used to create transient free transitions between control laws and provide anti-windup protection for cascaded PID controllers.
 
 ```C++
 /* Reference command of 3, feedback value of 1, and tracking value of 0.5 */
