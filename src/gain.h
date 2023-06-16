@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2023 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -23,8 +23,8 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef SRC_GAIN_H_
-#define SRC_GAIN_H_
+#ifndef CONTROL_SRC_GAIN_H_  // NOLINT
+#define CONTROL_SRC_GAIN_H_
 
 #if defined(ARDUINO)
 #include <Arduino.h>
@@ -32,25 +32,17 @@
 
 namespace bfs {
 
-template<typename T>
 class Gain {
  public:
-  Gain(T k, T min, T max) : k_(k), min_(min), max_(max) {}
-  T Run(T input) {
-    y_ = k_ * input;
-    if (y_ > max_) {
-      y_ = max_;
-    } else if (y_ < min_) {
-      y_ = min_;
-    }
-    return y_;
-  }
+  Gain(const float k, const float min, const float max)
+    : k_(k), min_(min), max_(max) {}
+  float Run(const float input);
 
  private:
-  const T k_, min_, max_;
-  T y_;
+  const float k_, min_, max_;
+  float y_;
 };
 
 }  // namespace bfs
 
-#endif  // SRC_GAIN_H_
+#endif  // CONTROL_SRC_GAIN_H_ NOLINT

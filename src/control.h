@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2023 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -23,8 +23,8 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef SRC_CONTROL_H_
-#define SRC_CONTROL_H_
+#ifndef CONTROL_SRC_CONTROL_H_  // NOLINT
+#define CONTROL_SRC_CONTROL_H_
 
 #if defined(ARDUINO)
 #include <Arduino.h>
@@ -32,4 +32,4 @@
 #include "gain.h"  // NOLINT
 #include "pid.h"  // NOLINT
 
-#endif  // SRC_CONTROL_H_
+#endif  // CONTROL_SRC_CONTROL_H_ NOLINT

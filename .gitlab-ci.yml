@@ -9,4 +9,6 @@ Lint:
     - cpplint --verbose=0 src/control.h
     - cpplint --verbose=0 src/gain.h
     - cpplint --verbose=0 src/pid.h
+    - cpplint --verbose=0 src/gain.cpp
+    - cpplint --verbose=0 src/pid.cpp
   

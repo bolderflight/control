@@ -23,18 +23,22 @@
 * IN THE SOFTWARE.
 */
 
-#include "control.h"
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
 
-void setup() {
-  /* Proportional controller with a gain of 2 and limits of +/- 1 */
-  bfs::Pid pid(2.0f, -1.0f, 1.0f);
-  Serial.println(pid.Run(3, 1)); // 1, saturated
+#include "gain.h"  // NOLINT
 
-  /* Gain of 2 with limits at -1 and 10 */
-  bfs::Gain g(2, -1, 10);
-  Serial.println(g.Run(3)); // 6
-  Serial.println(g.Run(6)); // 10, saturated
-  Serial.println(g.Run(-1)); // -1, saturated
+namespace bfs {
+
+float Gain::Run(const float input) {
+  y_ = k_ * input;
+  if (y_ > max_) {
+    y_ = max_;
+  } else if (y_ < min_) {
+    y_ = min_;
+  }
+  return y_;
 }
 
-void loop() {}
+}  // namespace bfs

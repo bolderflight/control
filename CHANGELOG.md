@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.0
+- Moved away from templates to floats and switched to header and source files
+
 ## v3.0.0
 - Updated directory structure to support Arduino in addition to CMake builds
 - Added an Arduino example
